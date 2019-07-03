@@ -14,7 +14,14 @@ class CreateFeatureUserTable extends Migration
     public function up()
     {
         Schema::create('feature_user', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->primary(['feature_id', 'user_id']);
+            //這行可以讓user_id和group_id不會被重覆加進去
+            $table->unsignedInteger('feature_id');
+            $table->unsignedInteger('user_id');
+            // foreign 要搭配 primary key，並指定(on)哪個表格的(references)哪個欄位
+            // onDelete('cascade') 是為了避免資料刪除的時候，關聯資料表沒刪除到，所以建議要加上去
+            $table->foreign('feature_id')->references('id')->on('features')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

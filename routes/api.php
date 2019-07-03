@@ -61,5 +61,7 @@ Route::get('/', function(){
 //    $group = Group::first();
 //    $group->features()->attach(1);
 
+    $feature = Feature::find(1);
+    $feature->users()->attach(2);
     return response('success');
 });
