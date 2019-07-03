@@ -20,7 +20,7 @@ class CreateFeatureGroupTable extends Migration
             $table->unsignedInteger('group_id');
             // foreign 要搭配 primary key，並指定(on)哪個表格的(references)哪個欄位
             // onDelete('cascade') 是為了避免資料刪除的時候，關聯資料表沒刪除到，所以建議要加上去
-            $table->foreign('feature_id')->references('id')->on('feature')->onDelete('cascade');
+            $table->foreign('feature_id')->references('id')->on('features')->onDelete('cascade');
             $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
             $table->timestamps();
         });
