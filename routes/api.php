@@ -1,5 +1,6 @@
 <?php
 
+use App\authPractice\Entity\Feature;
 use App\authPractice\Entity\Group;
 use App\authPractice\Entity\User;
 use Illuminate\Http\Request;
@@ -35,10 +36,10 @@ Route::get('/', function(){
 //    確認可以多對多取到值
 
 
-    $User = User::find(1);
+//    $User = User::find(1);
 //    $User->groups()->attach(1);
 //    $User->groups()->attach(2);
-    $User->groups()->attach([1,2]); //上面兩個會等於這個，也就是可以用array的方式一次關聯多個
+//    $User->groups()->attach([1,2]); //上面兩個會等於這個，也就是可以用array的方式一次關聯多個
 //    把User裡面id是1的關聯到group2, 也就是pivot裡變成user_id 1對應到group_id: 2
 
 //    $User = User::find(2);
@@ -50,8 +51,15 @@ Route::get('/', function(){
 //    $User->groups()->detach(2);
 //    把user id1和 group_id2的關聯刪掉
 
-//    $User = User::find(1);
-//    $User->groups()->create(['groups_id'=>'2']);
+//    $user = User::create(['user_name'=>'test']); // create裡傳的一定要是array
+//    $user->groups()->attach([1,2]); // 接著就可以建立關聯了
+//    $user->groups()->detach([1,2,3]); // 也可以移除
 
+//    $user2 = User::first(); // 在users裡選第一筆
+//    $user2->groups()->update(['group_id'=>2]); // 把第一筆user對應的group_id給update到2
+
+    $group = Group::first();
+    $group->features()->attach(1);
+    
     return response('success');
 });

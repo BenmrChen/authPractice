@@ -17,9 +17,15 @@ class User extends Model
         "user_name"
     ];
 
-    // 建立與groups的多對多關聯
+    // 建立與 Group 的多對多關聯
     public function groups()
     {
         return $this->belongsToMany('App\authPractice\Entity\Group')->withTimestamps();
+    }
+
+    // 建立與 Feature 的多對多關聯
+    public function features()
+    {
+        return $this->belongsToMany('App\authPractice\Entity\Feature')->withTimestamps();
     }
 }
