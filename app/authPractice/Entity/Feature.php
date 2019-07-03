@@ -16,4 +16,16 @@ class Feature extends Model
     protected $fillable = [
         "feature_name",
     ];
+
+//    建立與 Group 的多對多關聯
+    public function groups()
+    {
+        return $this->belongsToMany('App\authPractice\Entity\Group')->withTimestamps();
+    }
+
+    // 建立與 User 的多對多關聯
+    public function users()
+    {
+        return $this->belongsToMany('App\authPractice\Entity\User')->withTimestamps();
+    }
 }
