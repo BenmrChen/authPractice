@@ -58,8 +58,8 @@ Route::get('/', function(){
 //    $user2 = User::first(); // 在users裡選第一筆
 //    $user2->groups()->update(['group_id'=>2]); // 把第一筆user對應的group_id給update到2
 
-    $group = Group::first();
-    $group->features()->attach(1);
-    
+//    $group = Group::first();
+//    $group->features()->attach(1);
+
     return response('success');
 });
