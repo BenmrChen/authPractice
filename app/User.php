@@ -1,39 +1,31 @@
 <?php
 
-namespace App;
+namespace App\authPractice\Entity;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model
 {
-    use Notifiable;
+    // 資料表名稱
+    protected $table = 'users';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    // 主鍵名稱
+    protected $primaryKey = 'id';
+
+    // 可大量指定異動column
     protected $fillable = [
-        'name', 'email', 'password',
+        "user_name"
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    // 建立與 Group 的多對多關聯
+    public function groups()
+    {
+        return $this->belongsToMany('App\authPractice\Entity\Group')->withTimestamps();
+    }
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    // 建立與 Feature 的多對多關聯
+    public function features()
+    {
+        return $this->belongsToMany('App\authPractice\Entity\Feature')->withTimestamps();
+    }
 }
