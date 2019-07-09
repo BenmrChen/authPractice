@@ -1,6 +1,6 @@
 <?php
 
-namespace App\authPractice\Entity;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,12 +20,12 @@ class User extends Model
     // 建立與 Group 的多對多關聯
     public function groups()
     {
-        return $this->belongsToMany('App\authPractice\Entity\Group')->withTimestamps();
+        return $this->belongsToMany('App\Group')->withTimestamps();
     }
 
     // 建立與 Feature 的多對多關聯
     public function features()
     {
-        return $this->belongsToMany('App\authPractice\Entity\Feature')->withTimestamps();
+        return $this->belongsToMany('App\Feature')->withTimestamps();
     }
 }
