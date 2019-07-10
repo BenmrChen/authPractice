@@ -18,6 +18,10 @@ class User extends Model
         "api_token",
     ];
 
+    protected $hidden = [
+        "api_token",
+    ];
+
     // 建立與 Group 的多對多關聯
     public function groups()
     {
