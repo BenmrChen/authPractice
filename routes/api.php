@@ -16,9 +16,23 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::group([ 'middleware' => 'auth:api'], function () {
+    Route::get('Test', function(){
+        return response('OK to test');
+    });
+});
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth:api')->post('/user', function (Request $request) {
+    return $request->user();
+});
+
+Route::post('/user/create', "authPracticeController@create");
+Route::post('/user/update', "authPracticeController@update");
+
 
 Route::get('/', function(){
 //    $user = User::where('id', '1')->first();
