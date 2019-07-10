@@ -14,7 +14,8 @@ class User extends Model
 
     // 可大量指定異動column
     protected $fillable = [
-        "user_name"
+        "user_name",
+        "api_token",
     ];
 
     // 建立與 Group 的多對多關聯
